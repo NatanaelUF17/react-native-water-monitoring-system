@@ -1,10 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Dashboard() {
+interface Props {
+    name?: string
+}
+
+export default function Dashboard({ name }: Props) {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Hello from Dashboard! 🏄🏽</Text>
+            <Text style={styles.text}>Hello to the Dashboard {name}! 🏄🏽</Text>
             <StatusBar style="auto" />
         </View>
     );
@@ -18,7 +22,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     text: {
-        fontFamily: 'montserrat-bold',
+        fontFamily: 'montserrat-medium',
         fontSize: 30,
     }
 });

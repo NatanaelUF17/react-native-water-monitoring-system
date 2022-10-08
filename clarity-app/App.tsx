@@ -1,25 +1,16 @@
-import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Feather } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
+import { createStackNavigator } from '@react-navigation/stack';
 import { useState, useEffect, useCallback } from 'react';
-import { useAssets } from 'expo-asset';
-import Dashboard from './views/Dashboard';
-import Reports from './views/Reports';
-import Header from './components/Header';
+import Onboarding from './views/Onboarding';
+import Navigation from './common/Navigation';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
 
   const [fontsLoaded, setFontsLoaded] = useState(false);
-  const [assets, error] = useAssets([
-    require('./assets/logo.png'),
-    require('./assets/user-avatar.png')
-  ]);
 
   const loadFonts = async () => {
     try {
@@ -42,62 +33,30 @@ export default function App() {
     }
   }, [fontsLoaded]);
 
-
   useEffect(() => {
     loadFonts();
   }, [])
 
-  if (!fontsLoaded || error || !assets || (assets && assets.length < 0)) return null;
+  if (!fontsLoaded) return null;
 
   return (
     <NavigationContainer onReady={onLayoutRootView}>
-      <Tab.Navigator screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          if (route.name === "Dashboard") {
-            return <Feather name="home" size={24} color={'white'} />
-          } else if (route.name === "Reports") {
-            return <Ionicons name="information-circle-outline" size={24} color={'white'} />
-          }
-        },
-        tabBarActiveTintColor: 'white',
-        tabBarInactiveTintColor: 'white',
-        tabBarStyle: {
-          backgroundColor: '#3B70EE'
-        }
-      })}>
-        <Tab.Screen
-          name='Dashboard'
-          component={Dashboard}
+      <Stack.Navigator initialRouteName='Onboarding'>
+        <Stack.Screen
+          name="Onboarding"
+          component={Onboarding}
           options={{
-            headerTitle: () => <Header logo={assets[0]} avatar={assets[1]} />,
-            headerStyle: styles.dashboardHeaderStyle,
-            headerShown: true,
+            headerShown: false
           }}
         />
-        <Tab.Screen
-          name='Reports'
-          component={Reports}
+        <Stack.Screen
+          name="Navigation"
+          component={Navigation}
           options={{
-            headerTitle: () => <Header logo={assets[0]} avatar={assets[1]} />,
-            headerStyle: styles.dashboardHeaderStyle,
-            headerShown: true
+            headerShown: false
           }}
         />
-      </Tab.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  dashboardHeaderStyle: {
-    backgroundColor: 'white',
-    shadowColor: "#0000000F",
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.55,
-    shadowRadius: 5,
-    elevation: 21,
-  }
-});
