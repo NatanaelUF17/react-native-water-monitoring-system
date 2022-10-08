@@ -5,6 +5,7 @@ import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import Dashboard from './views/Dashboard';
 import Reports from './views/Reports';
+import Header from './components/Header';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,13 +30,19 @@ export default function App() {
           name='Dashboard'
           component={Dashboard}
           options={{
+            headerTitle: () => <Header />,
             headerStyle: styles.dashboardHeaderStyle,
-            headerShown: true
+            headerShown: true,
           }}
         />
         <Tab.Screen
           name='Reports'
           component={Reports}
+          options={{
+            headerTitle: () => <Header />,
+            headerStyle: styles.dashboardHeaderStyle,
+            headerShown: true
+          }}
         />
       </Tab.Navigator>
     </NavigationContainer>
