@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function Reports() {
     return (
         <View style={styles.container}>
-            <Text>Hello from Reports! 🧾</Text>
+            <Text style={styles.text}>Hello from Reports! 🧾</Text>
             <StatusBar style="auto" />
         </View>
     );
@@ -17,4 +17,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    text: {
+        fontFamily: 'montserrat-bold',
+        fontSize: 30
+    }
 });

@@ -1,10 +1,12 @@
 import { View, Image, StyleSheet } from 'react-native'
 import React from 'react'
 
-export default function Header() {
-    const logo = require('../assets/logo.png');
-    const avatar = require('../assets/user-avatar.png');
+interface Props {
+    logo: any,
+    avatar: any,
+}
 
+export default function Header({ logo, avatar }: Props) {
     return (
         <View style={styles.main}>
             <View style={{ width: '80%' }}>
