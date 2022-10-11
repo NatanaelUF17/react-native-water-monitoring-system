@@ -22,6 +22,7 @@ export default function WaterPresentation() {
 
 const styles = StyleSheet.create({
     waterPresentationContainer: {
+        flex: 2,
         flexDirection: 'row',
         backgroundColor: '#3B70EE',
         width: '100%',
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     waterPresentationText: {
         color: 'white',
         fontFamily: 'montserrat-bold',
-        fontSize: 18,
+        fontSize: 20,
         textAlign: 'left'
     },
     waterImageContainer: {

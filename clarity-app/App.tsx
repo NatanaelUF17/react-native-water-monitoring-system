@@ -17,6 +17,7 @@ export default function App() {
       return await Font.loadAsync({
         'montserrat-black': require('./assets/fonts/Montserrat-Black.ttf'),
         'montserrat-bold': require('./assets/fonts/Montserrat-Bold.ttf'),
+        'montserrat-semi-bold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
         'montserrat-medium': require('./assets/fonts/Montserrat-Medium.ttf'),
         'montserrat': require('./assets/fonts/Montserrat.ttf'),
       });
