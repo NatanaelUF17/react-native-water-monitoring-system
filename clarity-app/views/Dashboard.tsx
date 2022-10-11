@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import WaterPresentation from '../components/WaterPresentation';
 
 interface Props {
     name?: string
@@ -7,22 +8,35 @@ interface Props {
 
 export default function Dashboard({ name }: Props) {
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>Hello to the Dashboard {name}! 🏄🏽</Text>
+        <View style={styles.mainContainer}>
             <StatusBar style="auto" />
+            <View style={styles.welcomeContainer}>
+                <Text style={styles.text}>Welcome,</Text>
+                <Text style={styles.text2}>{name}</Text>
+            </View>
+            <WaterPresentation />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
+    mainContainer: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        padding: 35
+    },
+    welcomeContainer: {
+        marginTop: 2,
+        marginBottom: 2
     },
     text: {
+        fontFamily: 'montserrat-bold',
+        fontSize: 20,
+        textAlign: 'left'
+    },
+    text2: {
         fontFamily: 'montserrat-medium',
-        fontSize: 30,
-    }
+        fontSize: 20,
+        textAlign: 'left'
+    },
 });
