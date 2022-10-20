@@ -1,9 +1,7 @@
 import React from 'react'
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Feather } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
 import { useAssets } from 'expo-asset';
 import Dashboard from '../views/Dashboard';
 import Reports from '../views/Reports';
@@ -19,14 +17,24 @@ export default function Navigation({ route }: Props) {
     const { name } = route.params;
     const [assets, error] = useAssets([
         require('../assets/logo.png'),
-        require('../assets/user-avatar.png')
+        require('../assets/user-avatar.png'),
+        require('../assets/dashboard-outline.png'),
+        require('../assets/dashboard-filled.png'),
+        require('../assets/reports-outline.png'),
     ]);
+
+    const dashBoardOutline = require('../assets/dashboard-outline.png');
+    const dashBoardFilled = require('../assets/dashboard-filled.png');
+    const reportsOutline = require('../assets/reports-outline.png');
+    const reportsFilled = require('../assets/reports-filled.png');
 
     const handleTabBarIcons = (route: any, focused: any, color: any, size: any) => {
         if (route.name === "Dashboard") {
-            return <Feather name="home" size={24} color={'white'} />
+            return focused ?
+                <Image source={dashBoardFilled} style={{ width: 23, height: 25 }} /> : <Image source={dashBoardOutline} style={{ width: 23, height: 25 }} />
         } else if (route.name === "Reports") {
-            return <Ionicons name="information-circle-outline" size={24} color={'white'} />
+            return focused ?
+                <Image source={reportsFilled} style={{ width: 25, height: 25 }} /> : <Image source={reportsOutline} style={{ width: 25, height: 25 }} />
         }
     }
 
